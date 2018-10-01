@@ -2,6 +2,8 @@
 
 Cities travel app implemented in Flutter & Redux
 
+This project also uses Flutter-redux.
+
 ## Getting Started
 
 To get started, clone the project:

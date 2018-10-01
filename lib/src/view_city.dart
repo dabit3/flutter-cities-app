@@ -55,9 +55,7 @@ class ViewCityWithState extends State {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showBottomSheet();
-        },
+        onPressed: () => _showBottomSheet(),
         child: Icon(Icons.add),
       )
     );
