@@ -4,8 +4,8 @@ import 'package:redux/redux.dart';
 
 import 'package:citiesapp/src/models/model.dart';
 import 'package:citiesapp/src/redux/reducers.dart';
-import 'package:citiesapp/src/redux/actions.dart';
 import 'package:citiesapp/src/add_city.dart';
+import 'package:citiesapp/src/view_city.dart';
 
 final _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -109,65 +109,10 @@ class ViewList extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CityView(city: i)),
+              MaterialPageRoute(builder: (context) => ViewCity(i)),
             );
           },
         )).toList()),
-      // builder: (context, items) => Column(
-        // children: items.map((i) => ListTile(
-        //   title: Text(i.name),
-        //   subtitle: Text(i.country),
-        //   onTap: () {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(builder: (context) => CityView(city: i)),
-        //     );
-        //   },
-        // )).toList(),
-      // )
-    );
-  }
-}
-
-class CityView extends StatelessWidget {
-  final City city;
-
-  // In the constructor, require a Todo
-  CityView({Key key, @required this.city}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(city.name),
-      ),
-      body: StoreConnector<AppState, City>(
-        converter: (store) => store.state.cities[city.id],
-        builder: (context, city) => ListView(
-          shrinkWrap: true,
-          padding: const EdgeInsets.all(20.0),
-          children: city.locations.map((i) => ListTile(
-            title: Text(i.name),
-            subtitle: Text(i.description),
-          )).toList()
-        ),
-        // builder: (context, city) => Column(
-        //   children: city.locations.map((i) => ListTile(
-        //     title: Text(i.name),
-        //     subtitle: Text(i.description),
-        //     ), 
-        //   ).toList(),
-        // ),
-      ),
-      floatingActionButton: StoreConnector<AppState, Function>(
-        converter: (store) => () => store.dispatch(AddLocationAction(cityId: city.id, name: "Mama hamil's", description: "Cool restaurant")),
-        builder: (context, add) => FloatingActionButton(
-          onPressed: () {
-            add();
-          },
-          child: Text("Add"),
-        )
-      )
     );
   }
 }

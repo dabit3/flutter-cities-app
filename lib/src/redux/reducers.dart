@@ -14,7 +14,6 @@ List <City> addLocationReducer(List <City> state, action) {
   var listCopy = <City>[]..addAll(state);
   listCopy[index] = cityFromList;
 
-  print("${listCopy[0].locations[0].name}");
   return listCopy;
 }
 
