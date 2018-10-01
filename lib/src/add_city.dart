@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:citiesapp/src/models/model.dart';
+import 'package:citiesapp/src/redux/actions.dart';
 
 class AddCityWithState extends StatefulWidget {
   @override AddCityState createState() => AddCityState(); 
@@ -52,16 +55,21 @@ class AddCityState extends State {
                 ),
               ),
             ),
-            RaisedButton(
+            StoreConnector <AppState, dynamic>(
+              converter: (store) => ({name, country}) {
+                store.dispatch(AddCityAction(name: name, country: country));
+              },
+              builder: (context, add) =>  RaisedButton(
               child: Text("Add"),
-              onPressed: () {
-                if (nameController.text.isEmpty) {
-                  print("No Text for name");
+                onPressed: () {
+                  if (nameController.text.isEmpty) {
+                    print("No Text for name");
+                  }
+                  add(name: nameController.text, country: countryController.text);
+                  Navigator.pop(context);
                 }
-                print("Second text field: ${nameController.text}");
-                print("Second text field: ${countryController.text}");
-              }
-            )
+              )
+            ),
           ]
         )
       )

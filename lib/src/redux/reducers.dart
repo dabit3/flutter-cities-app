@@ -9,9 +9,8 @@ List <City> addCityReducer(List<City> state, action) {
       ..addAll(state)
       ..add(City(
         id: action.id,
-        name: action.city.name,
-        description: action.city.description,
-        country: action.city.country,
+        name: action.name,
+        country: action.country,
       ));
 }
 

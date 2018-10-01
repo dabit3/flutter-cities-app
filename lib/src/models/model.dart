@@ -4,14 +4,12 @@ class City {
   final int id;
   final String name;
   final String country;
-  final String description;
 
   City({
     this.id,
     this.name,
     this.country,
-    this.description
-    });
+  });
 }
 
 class AppState {
@@ -24,7 +22,6 @@ class AppState {
   static City firstCity = City(
     name: "New York",
     country: "USA",
-    description: "Cool City",
     id: 0,
   );
 

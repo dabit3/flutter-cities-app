@@ -11,7 +11,10 @@ final _scaffoldKey = new GlobalKey<ScaffoldState>();
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final store = Store<AppState>(appStateReducer, initialState: AppState.initialState());
+  final store = Store<AppState>(
+    appStateReducer,
+    initialState: AppState.initialState()
+  );
   @override
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
@@ -103,7 +106,7 @@ class ViewList extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CityView()),
+              MaterialPageRoute(builder: (context) => CityView(city: i)),
             );
           },
           ), 
@@ -114,36 +117,17 @@ class ViewList extends StatelessWidget {
 }
 
 class CityView extends StatelessWidget {
+  final City city;
+
+  // In the constructor, require a Todo
+  CityView({Key key, @required this.city}) : super(key: key);
+
    @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hello From CityView"),
+        title: Text(city.name),
       )
     );
   }
 }
-
-// class ListInput extends StatefulWidget {
-//   @override ListInputState createState() => ListInputState();
-// }
-
-// class ListInputState extends State<ListInput> {
-//   final TextEditingController controller = TextEditingController();
-//   @override
-//   Widget build(BuildContext context) {
-    
-    // return StoreConnector<ListState, dynamic>(
-    //   converter: (store) {
-    //     return (inputText) => store.dispatch(AddAction(input: inputText));
-    //   },
-    //   builder: (context, callback) => TextField(
-    //       controller: controller,
-    //       onSubmitted: (text) {
-    //         callback(text);
-    //         controller.text = '';
-    //       },
-    //     )
-    // );
-//   }
-// }

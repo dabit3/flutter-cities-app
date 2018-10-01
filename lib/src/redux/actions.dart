@@ -2,9 +2,12 @@ import 'package:citiesapp/src/models/model.dart';
 
 class AddCityAction {
   static int _id = 0;
-  final String city;
+  final String name;
+  final String country;
 
-  AddCityAction(this.city) {
+  AddCityAction({this.name, this.country}) {
+    print(this.name);
+    print(this.country);
     _id++;
   }
 
